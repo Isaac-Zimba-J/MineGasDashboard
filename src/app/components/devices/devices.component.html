@@ -1,1 +1,104 @@
-<p>devices works!</p>
+<div class="devices-container">
+  <div class="header">
+    <h1>Devices</h1>
+    <button class="add-device-btn" (click)="addNewDevice()">Add Device</button>
+  </div>
+
+  <div class="devices-grid">
+    <div class="device-card" *ngFor="let device of devices">
+      <div class="device-header">
+        <h2>{{ device.name }}</h2>
+        <div class="device-actions">
+          <button (click)="editDevice(device)">Edit</button>
+          <button (click)="deleteDevice(device.name)">Delete</button>
+        </div>
+      </div>
+      <div class="device-info">
+        <p>Temperature: {{ device.temperature }}°C</p>
+        <p>Humidity: {{ device.humidity }}%</p>
+        <p>Sulphur Dioxide: {{ device.sulphurDioxide }} ppm</p>
+        <p>Location: {{ device.latitude }}° N, {{ device.longitude }}° E</p>
+        <p>Last Updated: {{ device.updatedAt | date : "medium" }}</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" *ngIf="showModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>{{ isEditing ? "Edit Device" : "Add New Device" }}</h2>
+        <button class="close-btn" (click)="resetForm()" type="button">
+          &times;
+        </button>
+      </div>
+      <form (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="name">Device Name</label>
+          <input
+            type="text"
+            id="name"
+            [(ngModel)]="currentDevice!.name"
+            name="name"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="temperature">Temperature (°C)</label>
+          <input
+            type="number"
+            id="temperature"
+            [(ngModel)]="currentDevice!.temperature"
+            name="temperature"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="humidity">Humidity (%)</label>
+          <input
+            type="number"
+            id="humidity"
+            [(ngModel)]="currentDevice!.humidity"
+            name="humidity"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="sulphurDioxide">Sulphur Dioxide (ppm)</label>
+          <input
+            type="number"
+            id="sulphurDioxide"
+            [(ngModel)]="currentDevice!.sulphurDioxide"
+            name="sulphurDioxide"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="latitude">Latitude</label>
+          <input
+            type="number"
+            id="latitude"
+            [(ngModel)]="currentDevice!.latitude"
+            name="latitude"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="longitude">Longitude</label>
+          <input
+            type="number"
+            id="longitude"
+            [(ngModel)]="currentDevice!.longitude"
+            name="longitude"
+            required
+          />
+        </div>
+        <div class="form-actions">
+          <button type="button" (click)="resetForm()">Cancel</button>
+          <button type="submit">
+            {{ isEditing ? "Update" : "Add" }} Device
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,4 +1,23 @@
 <div class="home-container">
-  <h1>Welcome to Mine Gas App</h1>
-  <p>Monitor your gas sensors and devices in real-time</p>
+  <h1>Dashboard</h1>
+  <div class="devices-grid">
+    <div class="device-card" *ngFor="let device of devices">
+      <div class="device-header">
+        <h3>{{ device.name }}</h3>
+        <div
+          class="device-status"
+          [ngClass]="{ warning: device.sulphurDioxide > 50 }"
+        >
+          {{ device.sulphurDioxide > 50 ? "Warning" : "Normal" }}
+        </div>
+      </div>
+      <div class="device-info">
+        <p>Temperature: {{ device.temperature }}°C</p>
+        <p>Humidity: {{ device.humidity }}%</p>
+        <p>Sulphur Dioxide: {{ device.sulphurDioxide }} ppm</p>
+        <p>Location: {{ device.latitude }}° N, {{ device.longitude }}° E</p>
+        <p>Last Updated: {{ device.updatedAt | date : "medium" }}</p>
+      </div>
+    </div>
+  </div>
 </div>

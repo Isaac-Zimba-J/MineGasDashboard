@@ -1,14 +1,88 @@
 .home-container {
   padding: 20px;
-  text-align: center;
+  max-width: 1400px;
+  margin: 0 auto;
 
   h1 {
-    color: #2c3e50;
-    margin-bottom: 20px;
+    color: #333;
+    margin-bottom: 30px;
   }
 
+  .devices-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 20px;
+    width: 100%;
+
+    @media (max-width: 1200px) {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    @media (max-width: 900px) {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    @media (max-width: 600px) {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+
+  .device-card {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    transition: transform 0.2s;
+    width: 100%;
+    box-sizing: border-box;
+
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    }
+
+    .device-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+
+      h3 {
+        margin: 0;
+        color: #333;
+        font-size: 18px;
+      }
+
+      .device-status {
+        padding: 4px 8px;
+        border-radius: 4px;
+        font-size: 12px;
+        font-weight: 500;
+        background-color: #4caf50;
+        color: white;
+
+        &.warning {
+          background-color: #f44336;
+        }
+      }
+    }
+
+    .device-info {
+      p {
+        margin: 8px 0;
+        color: #666;
+        font-size: 14px;
+      }
+    }
+  }
+}
+
+.no-devices {
+  text-align: center;
+  padding: 40px;
+  color: #7f8c8d;
+
   p {
-    color: #7f8c8d;
     font-size: 1.2rem;
   }
 }
