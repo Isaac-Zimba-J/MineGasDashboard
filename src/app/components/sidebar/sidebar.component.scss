@@ -1,0 +1,78 @@
+.sidebar {
+  height: 100vh;
+  width: 250px;
+  background-color: #2c3e50;
+  color: white;
+  transition: width 0.3s ease;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 1000;
+
+  &.collapsed {
+    width: 60px;
+  }
+
+  .sidebar-header {
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+    h2 {
+      margin: 0;
+      font-size: 1.2rem;
+      white-space: nowrap;
+    }
+  }
+
+  .hamburger {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+
+    span {
+      display: block;
+      width: 20px;
+      height: 2px;
+      background-color: white;
+      transition: 0.3s ease;
+    }
+  }
+
+  .sidebar-nav {
+    padding: 20px 0;
+
+    a {
+      display: flex;
+      align-items: center;
+      padding: 12px 20px;
+      color: white;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+      gap: 10px;
+
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+      }
+
+      &.active {
+        background-color: rgba(255, 255, 255, 0.2);
+      }
+
+      i {
+        width: 20px;
+        text-align: center;
+      }
+
+      span {
+        white-space: nowrap;
+      }
+    }
+  }
+}

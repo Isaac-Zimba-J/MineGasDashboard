@@ -1,0 +1,29 @@
+<div class="sidebar" [class.collapsed]="isCollapsed">
+  <div class="sidebar-header">
+    <button class="hamburger" (click)="toggleSidebar()">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <h2 *ngIf="!isCollapsed">Mine Gas App</h2>
+  </div>
+
+  <nav class="sidebar-nav">
+    <a routerLink="/home" routerLinkActive="active">
+      <i class="fas fa-home"></i>
+      <span *ngIf="!isCollapsed">Home</span>
+    </a>
+    <a routerLink="/devices" routerLinkActive="active">
+      <i class="fas fa-microchip"></i>
+      <span *ngIf="!isCollapsed">Devices</span>
+    </a>
+    <a routerLink="/settings" routerLinkActive="active">
+      <i class="fas fa-cog"></i>
+      <span *ngIf="!isCollapsed">Settings</span>
+    </a>
+    <a routerLink="/logout" routerLinkActive="active">
+      <i class="fas fa-sign-out-alt"></i>
+      <span *ngIf="!isCollapsed">Logout</span>
+    </a>
+  </nav>
+</div>
