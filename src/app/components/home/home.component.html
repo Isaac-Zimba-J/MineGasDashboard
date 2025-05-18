@@ -1,5 +1,27 @@
 <div class="home-container">
   <h1>Dashboard</h1>
+
+  <div class="map-container">
+    <div *ngIf="!isMapLoaded" class="map-loading">Loading map...</div>
+    <google-map
+      *ngIf="isMapLoaded"
+      height="400px"
+      width="100%"
+      [center]="center"
+      [zoom]="zoom"
+      [options]="mapOptions"
+    >
+      <map-marker
+        *ngFor="let marker of markers"
+        [position]="marker.position"
+        [title]="marker.title"
+        [label]="marker.label"
+        [options]="marker.options"
+      >
+      </map-marker>
+    </google-map>
+  </div>
+
   <div class="devices-grid">
     <div class="device-card" *ngFor="let device of devices">
       <div class="device-header">
